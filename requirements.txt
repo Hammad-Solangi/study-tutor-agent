@@ -1,5 +1,5 @@
 streamlit
-crewai[litellm]==0.175.0
-crewai-tools==0.71.0
+crewai[litellm]
+crewai-tools
 python-dotenv
 requests
