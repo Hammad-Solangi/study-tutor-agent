@@ -16,7 +16,7 @@ def create_tutor():
     temperature=0.3,
     api_key=GROQ_API_KEY,
     max_tokens=1000,
-)
+
 )
     return Agent(
         role=TUTOR_ROLE,
