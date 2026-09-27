@@ -11,13 +11,13 @@ from tools import calculator, study_material_search
 
 
 def create_tutor():
-   llm = GroqLLM(
-    model=MODEL_NAME,
-    temperature=0.3,
-    api_key=GROQ_API_KEY,
-    max_tokens=1000,
+    llm = GroqLLM(
+        model=MODEL_NAME,
+        temperature=0.3,
+        api_key=GROQ_API_KEY,
+        max_tokens=1000,
+    )
 
-)
     return Agent(
         role=TUTOR_ROLE,
         goal=TUTOR_GOAL,
@@ -30,3 +30,4 @@ def create_tutor():
         allow_delegation=False,
         verbose=True,
     )
+
