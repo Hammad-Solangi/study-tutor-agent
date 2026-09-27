@@ -1,4 +1,5 @@
-from crewai import Agent, LLM
+from crewai import Agent
+from groq_llm import GroqLLM
 
 from settings import MODEL_NAME, GROQ_API_KEY
 from prompts import (
@@ -10,7 +11,7 @@ from tools import calculator, study_material_search
 
 
 def create_tutor():
-    llm = LLM(
+    llm = GroqLLM(
     model=MODEL_NAME,
     temperature=0.3,
     api_key=GROQ_API_KEY,
