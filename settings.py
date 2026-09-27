@@ -1,15 +1,35 @@
 import os
+import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
 
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
+def get_secret(name):
+    """Get a secret from Streamlit Cloud Secrets or environment variables."""
+
+    try:
+        value = st.secrets.get(name)
+
+        if value:
+            return value
+    except Exception:
+        pass
+
+    return os.getenv(name)
+
+
+# API keys
+GROQ_API_KEY = get_secret("GROQ_API_KEY")
+TAVILY_API_KEY = get_secret("TAVILY_API_KEY")
+
+# AI model
 MODEL_NAME = "groq/openai/gpt-oss-120b"
 
 
 def validate_settings():
+    """Make sure all required API keys are available."""
+
     missing = []
 
     if not GROQ_API_KEY:
@@ -20,5 +40,6 @@ def validate_settings():
 
     if missing:
         raise RuntimeError(
-            "Missing environment variables: " + ", ".join(missing)
+            "Missing environment variables: "
+            + ", ".join(missing)
         )
